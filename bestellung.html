@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <link rel="stylesheet" type="text/css" href="style.css" />
+<<<<<<< HEAD
 
 <script>
     function buyPizza(pizzaID) {
@@ -104,5 +105,53 @@
 		</section>
         </form>
 	</section>
+=======
+<script type="text/javascript" src="RadioAjax.js"></script>
+
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Bäcker</title>
+</head>
+<body>
+	<header>
+		<h1>Bäcker</h1>
+	</header>
+	<content>
+		<form action="baecker.html">
+			<table>
+				<tr>
+					<th></th>
+					<th>bestellt</th>
+					<th>im Ofen</th>
+					<th>fertig</th>
+				</tr>
+				<tr>
+					<td>Margherita</td>
+					<td><input type="radio" onchange="senden(1234, 0)" name="bnr1234" value="0" checked /></td>
+					<td><input type="radio" onchange="senden(1234, 1)" name="bnr1234" value="1" /></td>
+					<td><input type="radio" onchange="senden(1234, 2)" name="bnr1234" value="2" /></td>
+				</tr>
+				<tr>
+					<td>Salami</td>
+					<td><input type="radio" onchange="senden(1236, 0)" name="bnr1236" value="0" /></td>
+					<td><input type="radio" onchange="senden(1236, 1)" name="bnr1236" value="1" /></td>
+					<td><input type="radio" onchange="senden(1236, 2)" name="bnr1236" value="2" checked /></td>
+				</tr>
+				<tr>
+					<td>Hawai</td>
+					<td><input type="radio" onchange="senden(1237, 0)" name="bnr1237" value="0" /></td>
+					<td><input type="radio" onchange="senden(1237, 1)" name="bnr1237" value="1" checked /></td>
+					<td><input type="radio" onchange="senden(1237, 2)" name="bnr1237" value="2" /></td>
+					
+				</tr>
+			</table>
+		</form>
+		
+	</content>
+    <div id="ajaxDebug">
+
+    </div>
+>>>>>>> new-b
 </body>
 </html>
