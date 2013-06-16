@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+<script>
+    function buyPizza(pizzaID) {
+        "use strict";
+        var p = document.getElementById("Pizza" + pizzaID).innerHTML;
+        var a = document.getElementById("Preis" + pizzaID).innerHTML;
+        var o = document.getElementById("Bestellung").innerHTML;
+        
+        document.getElementById("Bestellung").innerHTML = o + "<option data-preis=\""+a+"\">" + p + "</option>";
+
+        rechne();
+    }
+    function deleteAll() {
+        "use strict";
+        document.getElementById("Bestellung").innerHTML = "";
+        preis.innerHTML = "Preis: 0 €";
+    }
+    function deleteSelect() {
+        while (s = Bestellung.selectedIndex != -1) {
+            Bestellung.remove(Bestellung.selectedIndex);
+        }
+        rechne();
+    }
+    function send() {
+        "use strict";
+        var ausgabe = "";
+        if (document.bes.Lieferadresse.value == "") {
+            ausgabe = "Keine Lieferadresse angegeben.\n";
+            document.bes.Lieferadresse.focus();
+        }
+        if (document.getElementById("Bestellung").options.length == 0) {
+            ausgabe = ausgabe + "Keine Pizza ausgewählt.";
+        }
+        if (ausgabe != "") {
+            alert(ausgabe);
+            
+        } else {
+            var nerv = document.getElementById("Bestellung").options;
+            for (var c = 0; c < nerv.length; c++) {
+                nerv[c].selected = true;
+            }
+        }
+    }
+    function rechne() {
+        "use strict";
+        var bc = document.getElementById("Bestellung").options;
+        var summe = 0.0;
+        var epreis;
+        for (var c = 0; c < bc.length; c++) {
+            epreis = parseFloat(bc[c].getAttribute("data-preis").replace(",","."));
+            summe = summe + epreis;
+        }
+        preis.innerHTML = "Preis: " + summe + " €";
+    }
+</script>
+
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Pizza bestellen</title>
+</head>
+<body>
+    <header>
+        <h1>Unsere Karte</h1>
+	</header>
+
+	<section id="Karte">
+		<table id="Tabelle">
+			<tr title="Hier klicken um Pizza hinzuzufügen">
+				<td><a href="#"><img src="src/pizza_icon.jpg" id="PBild1" alt="Bild einer Pizza" width="100" height="100" onclick="buyPizza(1);" /></a></td>
+				<td id="Pizza1">Margharita</td>
+				<td id="Preis1">4,50€</td>
+			</tr>
+			<tr title="Hier klicken um Pizza hinzuzufügen">
+				<td><a href="#"><img src="src/pizza_icon.jpg" alt="Bild einer Pizza" width="100" height="100" onclick="buyPizza(2)"/></a></td>
+				<td id="Pizza2">Salami</td>
+				<td id="Preis2">4,50€</td>      
+			</tr>
+			<tr title="Hier klicken um Pizza hinzuzufügen">
+				<td><a href="#"><img src="src/pizza_icon.jpg" alt="Bild einer Pizza" width="100" height="100" onclick="buyPizza(3)"/></a></td>
+				<td id="Pizza3">Hawai</td>
+				<td id="Preis3">5,50€</td>        
+			</tr>
+		</table>
+	</section>
+	
+	<section id="Warenkorb">
+        <form action="http://www.fbi.h-da.de/cgi-bin/Echo.pl" method="POST" name="bes" id="bes">
+		<section>
+            <p>Warenkorb:</p>
+			<select name="pizzen[]" multiple ="multiple" size="10" id="Bestellung" title="Aktuelle Bestellung" >
+			</select>
+
+			<p id="preis">Preis: </p>
+
+			<input type="text" name="Lieferadresse" id="Lieferadresse" placeholder="Adresse" />
+		</section>
+		<section>
+			<input type="button" value="Auswahl Löschen" onclick="deleteSelect()" />
+			<input type="button" value="Alles löschen" onclick="deleteAll()" />
+			<input type="submit" value="Bestellung abschicken" onclick="send()" id="sub" onmousedown="send()" />
+		</section>
+        </form>
+	</section>
+</body>
+</html>
